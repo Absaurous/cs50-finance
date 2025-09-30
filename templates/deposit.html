@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+ Deposit
+{% endblock %}
+
+{% block main %}
+<h1>Deposit</h1>
+
+<h4>Max transferable amount is $10,000.00</h4>
+
+<h4>Current Balance in account is {{ balance | usd }}</h4>
+
+<form action="/deposit" method="POST">
+    <input required type="number" min = 0.01 max = 10000 step = 0.01 name = "deposit" placeholder = "Amount">
+    <button type = "submit">Confirm</button>
+</form>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+ History
+{% endblock %}
+
+{% block main %}
+<h1>History</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Stocks</th>
+            <th>Quantity</th>
+            <th>Unit Value</th>
+            <th>Total Value</th>
+            <th>Status</th>
+            <th>Date/Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Loop through the list of dictionaries -->
+        {% for row in values %}
+            <tr>
+                <td>{{ row.symbol }}</td>
+                <td>{{ row.quantity }}</td>
+                <td>{{ row.price | usd }}</td>
+                <td>{{ (row.price * row.quantity) | usd}} </td>
+                <td>{{ row.status }}</td>
+                <td>{{ row.date_time }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+ Home
+{% endblock %}
+
+{% block main %}
+<h1>Home</h1>
+
+<script>
+    // Javascript runs on client side after server finishes rendering HTML so values must be embedded in HTML sent to client
+</script>
+<h2>Welcome {{ user_data.username }},</h2>
+
+<p class="top_align">Cash Balance: {{ user_data.cash | usd }}<br>Net Account Value: {{ total | usd }}</p>
+                <table class="table table-striped table-hover border-info">
+                    <caption>List of assets</caption>
+                    <thead class="table-light">
+                        <tr>
+                            <th>Stocks</th>
+                            <th>Quantity</th>
+                            <th>Unit Value</th>
+                            <th>Total Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Loop through the list of dictionaries -->
+                        {% for row in values %}
+                            <tr>
+                                <td>{{ row.symbol }}</td>
+                                <td>{{ row.quantity }}</td>
+                                <td>{{ row.price | usd }}</td>
+                                <td>{{ (row.price * row.quantity) | usd}} </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+{% endblock %}

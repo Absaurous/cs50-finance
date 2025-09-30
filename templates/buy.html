@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+ Search
+{% endblock %}
+
+{% block main %}
+<h1>Buy</h1>
+
+<form action="/buy" method="POST">
+    <input required type="text" name = "symbol" placeholder = "Symbol">
+    <input required type="number" min = 1 step = 1 name = "shares" placeholder = "Shares">
+    <button type = "submit">Buy</button>
+</form>
+{% endblock %}
