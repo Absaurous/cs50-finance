@@ -55,9 +55,6 @@ def index():
     return render_template("homepage.html", values=updated, user_data=user_data, price=unit_price, total=total)
 
 
-# CONSIDER WHETHER I NEED CERTAIN COLUMNS IN HOLDINGS
-
-
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
 def buy():
@@ -92,7 +89,7 @@ def buy():
         db.execute("UPDATE users SET cash = (?) WHERE id = (?)",
                    balance - total_cost, session["user_id"])
 
-        # If user is already holding similar type of stocks, update the qty instead of inserting, LIKE?
+        # If user is already holding similar type of stocks, update the qty instead of inserting
         if db.execute("SELECT * FROM holdings WHERE symbol == (?) AND person_id == (?)", stock["symbol"], session["user_id"]):
             db.execute("UPDATE holdings SET quantity = quantity + (?) WHERE symbol == (?)",
                        quantity, stock["symbol"])
@@ -264,7 +261,6 @@ def sell():
                 return apology("Invalid Quantity Requested")
         else:
             return apology("Invalid Stock")
-        # set a limit on the amount reques TODOOOOOOOOOOOOOOOOOOOOO
 
     else:
         assets = db.execute(
